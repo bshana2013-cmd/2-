@@ -97,6 +97,8 @@ body.edit .wall .row{animation-play-state:paused}
 .sg2{max-width:560px;margin:0 auto;text-align:center}.sg2 img{width:100%;height:auto;border-radius:14px;box-shadow:0 4px 14px rgba(0,0,0,.12)}
 .sgb{display:block;margin-top:18px;background:var(--red);color:#fff;text-decoration:none;font-weight:900;font-size:clamp(1.4rem,6vw,1.8rem);padding:18px 16px;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.25)}
 .sgb:active{transform:scale(.98)}.sg2 p{color:var(--mute);margin:10px 0 0;font-weight:700}
+.sl img{aspect-ratio:1100/1556;background:#eee}.sg2 img{aspect-ratio:1/1}
+html{scroll-behavior:auto}
 .sl{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));margin:0}
 .sl figure{margin:0;cursor:zoom-in}.sl img{width:100%;height:auto;display:block;border-radius:10px}
 .au{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));margin-top:24px}
@@ -188,6 +190,7 @@ function closeLb(){lb.classList.remove('on')}
 var cardImgs=[].slice.call(document.querySelectorAll('#cards .grid figure img'));
 cardImgs.forEach(function(im,i){im.onclick=function(){openLb(cardImgs,i)}});
 var slImgs=[].slice.call(document.querySelectorAll('#slogans .sl img'));slImgs.forEach(function(im,i){im.onclick=function(){openLb(slImgs,i)}});
+[].slice.call(document.querySelectorAll('nav a[href^="#"]')).forEach(function(a){a.addEventListener('click',function(e){var t=document.getElementById(a.getAttribute('href').slice(1));if(!t)return;e.preventDefault();var go=function(){t.scrollIntoView({behavior:'auto',block:'start'})};go();[120,350,800,1500].forEach(function(ms){setTimeout(go,ms)});try{history.replaceState(null,'',a.getAttribute('href'))}catch(x){}})});
 lb.onclick=function(e){if(e.target===lb)closeLb()};
 document.getElementById('lbc').onclick=closeLb;
 document.getElementById('lbp').onclick=function(){step(-1)};
